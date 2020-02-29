@@ -47,6 +47,7 @@ namespace Lab2_Ed1_ABB.Controllers
                 }
                 else
                 {
+                    Storage.Instance.user = user;
                     return RedirectToAction("Order", "Order");
                 }
 

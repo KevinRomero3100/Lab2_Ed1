@@ -10,5 +10,6 @@ namespace Lab2_Ed1_ABB.Models
         public string Direction { get; set; }
         public string UserName { get; set; }
         public int Nit { get; set; }
+
     }
 }
