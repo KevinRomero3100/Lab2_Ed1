@@ -21,6 +21,7 @@ namespace Lab2_Ed1_ABB.Helpers
         }
         public BinaryTree<Indice> binaryTree = new BinaryTree<Indice>();
         public List<Medication> showMedication = new List<Medication>();
-        public string route = "";
+        public UserDS user = new UserDS();
+        public string route = null;
     }
 }

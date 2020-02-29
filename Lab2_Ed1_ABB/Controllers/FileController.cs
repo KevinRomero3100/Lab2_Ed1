@@ -35,11 +35,19 @@ namespace Lab2_Ed1_ABB.Controllers
             }
             return View();
         }
-
-
+        [HttpGet]
         public ActionResult goCreateOrder()
         {
-            return RedirectToAction("Order", "Order");
+            if (Storage.Instance.route != null)
+            {
+                return RedirectToAction("CreateUser", "Order");
+            }
+            else
+            {
+                ViewBag.dontFile = "No se ha cargado ningun arcivo";
+                return View("CreateInventory");
+            }
+           
         }
 
     }

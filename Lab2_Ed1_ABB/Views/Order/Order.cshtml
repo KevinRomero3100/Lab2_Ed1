@@ -5,13 +5,14 @@
 }
 
 <h2>Crear Pedido</h2>
+<h2 class="text-info">@ViewBag.mensage</h2>
 
 
 @using (Html.BeginForm())
 {
     <div class="row">
         <input type="text" class="form-control" name="search" value="" placeholder="Buscar Medicamento" />
-        <button type="submit">Search</button>
+        <button type="submit">Buscar</button>
     </div>
 }
 <table class="table">
