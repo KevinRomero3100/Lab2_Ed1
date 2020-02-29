@@ -122,6 +122,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Models\Medication.cs" />
     <Compile Include="Models\ReadFile.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -169,7 +171,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\File\CreateInventory.cshtml" />
     <Content Include="Views\File\View.cshtml" />
-    <Content Include="Views\View2.cshtml" />
+    <Content Include="Views\Order\View2.cshtml" />
+    <Content Include="Views\Order\Order.cshtml" />
+    <Content Include="Views\Order\createOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

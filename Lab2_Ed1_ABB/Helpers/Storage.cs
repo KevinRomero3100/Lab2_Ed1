@@ -20,6 +20,8 @@ namespace Lab2_Ed1_ABB.Helpers
             }
         }
         public BinaryTree<Indice> binaryTree = new BinaryTree<Indice>();
-        string root;
+        public List<Medication> showMedication = new List<Medication>();
+        public string route = "";
+        //public Node<Indice> found = null; 
     }
 }

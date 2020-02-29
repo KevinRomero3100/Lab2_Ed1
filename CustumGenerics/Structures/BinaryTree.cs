@@ -8,7 +8,8 @@ namespace CustumGenerics.Structures
 {
     public class BinaryTree<T>
     {
-        public Node<T> Root { get; set; }
+        public static Node<T> Root { get; set; }
+        public static Node<T> Wanted { get; set; }
 
         public Node<T> createNode(T value)
         {
@@ -33,40 +34,49 @@ namespace CustumGenerics.Structures
             }
         }
 
-        public static Node<T> InsertNode(Node<T> actulay, Node<T> newNode,Comparison<T> comparison)
+        public void  InsertNode(Node<T> actulay, Node<T> newNode,Comparison<T> comparison)
         {
-
             if (comparison.Invoke(actulay.Value, newNode.Value) == 1)
             {
                 if (actulay.right == null)
-                {
                     actulay.right = newNode;
-                    return actulay;
-                }
                 else
-                {
-                    actulay.right = InsertNode(actulay.right, newNode, comparison);
-                    return actulay;
-                }
+                    InsertNode(actulay.right, newNode, comparison);
             }
             else if (comparison.Invoke(actulay.Value, newNode.Value) == -1)
             {
                 if (actulay.left == null)
-                {
                     actulay.left = newNode;
-                    return actulay;
-                }
                 else
-                {
-                    actulay.left = InsertNode(actulay.left, newNode, comparison);
-                    return actulay;
-                }
+                    InsertNode(actulay.left, newNode, comparison);
             }
-            else return null;
         }
 
+        public Node<T> search(T value, Comparison<T> comparison)
+        {
+            Wanted = null;
+            Preorden(Root, value, comparison);
+            if (Wanted != null)
+            {
+                Wanted.left = null;
+                Wanted.right = null;
+                return Wanted;
+            }
+            else
+                return Wanted;
+        }
 
-            
-        
+        public static void Preorden(Node<T> actualy, T value, Comparison<T> comparison)
+        {
+            if (comparison.Invoke(value, actualy.Value) == 0)
+                Wanted = actualy;
+            if (Wanted == null)
+            {
+                if (actualy.left != null)
+                    Preorden(actualy.left, value, comparison);
+                if (actualy.right != null)
+                    Preorden(actualy.right, value, comparison);
+            }
+        }
     }
 }

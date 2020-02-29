@@ -15,6 +15,7 @@ namespace Lab2_Ed1_ABB.Models
         {
             return indice1.nameDrug.CompareTo(indice2.nameDrug);
         };
+
         public void saveIndice()
         {
             Storage.Instance.binaryTree.Insert(this, comparisonbyName);

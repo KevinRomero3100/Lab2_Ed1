@@ -26,11 +26,12 @@ namespace Lab2_Ed1_ABB.Controllers
             {
                 route = Server.MapPath("~/Inventories/");
                 route += file.FileName;
+                Storage.Instance.route = route;
                 UploadFile.UploadFile(route, file);
                 ViewBag.Error = UploadFile.error;
                 ViewBag.Confirmation = UploadFile.Confirmation;
 
-                readFile.ReadFiles(route);
+                readFile.ReadFiles();
             }
             return View();
         }
@@ -38,7 +39,7 @@ namespace Lab2_Ed1_ABB.Controllers
 
         public ActionResult goCreateOrder()
         {
-            return RedirectToAction("");
+            return RedirectToAction("Order", "Order");
         }
 
     }
