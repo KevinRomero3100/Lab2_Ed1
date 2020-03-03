@@ -10,13 +10,17 @@ namespace Lab2_Ed1_ABB.Controllers
 {
     public class OrderController : Controller
     {
-        public ActionResult CreateUser()
+       public ActionResult CreateUser()
+        {
+            return View();
+        }
+       public ActionResult Car()
         {
             return View();
         }
        public ActionResult Order()
        {
-            return View();
+            return View(Storage.Instance.showMedication);
        }
         [HttpPost]
         public ActionResult CreateUser(FormCollection collection)
@@ -61,9 +65,20 @@ namespace Lab2_Ed1_ABB.Controllers
 
         }
 
-        [HttpPost]
-       public ActionResult Order(FormCollection collection)
+        public ActionResult goToCar()
         {
+            double total = 0;
+            foreach (var item in Storage.Instance.showCar)
+            {
+                total += item.Stock * Convert.ToDouble(item.Price);
+            }
+            @ViewBag.Total = total;
+            return View("Car", Storage.Instance.showCar);
+        }
+
+        [HttpPost]
+       public ActionResult searchMedicament(FormCollection collection)
+        {  
             var readFile = new ReadFile();
             var nameDrug = collection["search"];
             var indicesearched = new Indice
@@ -73,16 +88,53 @@ namespace Lab2_Ed1_ABB.Controllers
             var found = Storage.Instance.binaryTree.search(indicesearched, Indice.comparisonbyName);
             if (found != null)
             {
-                return View(readFile.SearcInFile(found.Value.lineNumber));
+                return View("Order",ReadFile.SearcInFile(found.Value.lineNumber));
             }
             else
             {
                 ViewBag.mensage = "Medicamento no encontrado";
-                return View();
+                return View("Order");
             }
             
         }
+        [HttpPost]
+        public ActionResult AddOrder(FormCollection collection)
+        {
+            try
+            {
+                Medication newmedication = new Medication();
+                List<Medication> showMedication = Storage.Instance.showMedication;
+                var solicitud = int.Parse(collection["cantidad"]);
+                foreach (var item in showMedication)
+                {
+                    newmedication = item;
+                }
+                if (newmedication.Stock >= solicitud)
+                {
+                    int oldStock = newmedication.Stock;
+                    ViewBag.Confirmation = "Solicitud aceptada y descargada con exito del inventario";
+                    ViewBag.Error = null;
+                    ReadFile.editStock(newmedication.Id, newmedication.Stock - solicitud, Server.MapPath("~/Inventories/"));
+                    newmedication.Stock = solicitud;
+                    Storage.Instance.showCar.Add(newmedication);
+                    Storage.Instance.showMedication = ReadFile.SearcInFile(newmedication.Id);
 
+                    return View("Order");
+                }
+                else
+                {
+                    ViewBag.Error = "No hay suficientes ecistencias del producto";
+                    return View("Order", Storage.Instance.showMedication);
+                }
 
-    }
+               
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Formato de solicitud invalido intentelo de nuevo";
+                return View("Order", Storage.Instance.showMedication);
+            }
+        }
+
+        }
 }

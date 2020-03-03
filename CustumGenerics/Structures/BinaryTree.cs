@@ -58,8 +58,6 @@ namespace CustumGenerics.Structures
             Preorden(Root, value, comparison);
             if (Wanted != null)
             {
-                Wanted.left = null;
-                Wanted.right = null;
                 return Wanted;
             }
             else

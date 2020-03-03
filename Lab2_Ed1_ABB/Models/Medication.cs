@@ -11,5 +11,6 @@ namespace Lab2_Ed1_ABB.Models
         public double Price { get; set; }
         public int Stock { get; set; }
         public string NameDrug { get; set; }
+        public int totalOrder { get; set; }
     }
 }

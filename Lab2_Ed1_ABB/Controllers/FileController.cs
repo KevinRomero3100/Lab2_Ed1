@@ -21,7 +21,6 @@ namespace Lab2_Ed1_ABB.Controllers
         public ActionResult CreateInventory(HttpPostedFileBase file)
         {
             FileModel UploadFile = new FileModel();
-            ReadFile readFile = new ReadFile();
             if (file != null)
             {
                 route = Server.MapPath("~/Inventories/");
@@ -30,8 +29,7 @@ namespace Lab2_Ed1_ABB.Controllers
                 UploadFile.UploadFile(route, file);
                 ViewBag.Error = UploadFile.error;
                 ViewBag.Confirmation = UploadFile.Confirmation;
-
-                readFile.ReadFiles();
+                ReadFile.ReadFiles();
             }
             return View();
         }

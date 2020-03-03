@@ -6,58 +6,68 @@
 
 <h2>Crear Pedido</h2>
 <h2 class="text-info">@ViewBag.mensage</h2>
+<h2 class="text-info">@ViewBag.Confirmation</h2>
+<h3 class="text-info">@ViewBag.Error</h3>
 
 
-@using (Html.BeginForm())
-{
+<form action="/Order/searchMedicament" method="post" enctype="multipart/form-data">
     <div class="row">
-        <input type="text" class="form-control" name="search" value="" placeholder="Buscar Medicamento" />
+        <input type="text" style="left: 8px; width:150px;" class="form-control" name="search" value="" placeholder="Buscar Medicamento" />
         <button type="submit">Buscar</button>
     </div>
-}
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NameDrug)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Stock)
-        </th>
+</form>
 
-        <th></th>
-    </tr>
-    @if (Model != null) 
-    {
-        foreach (var item in Model)
-        {
+
+    <form action="/Order/AddOrder" method="post" enctype="multipart/form-data">
+
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NameDrug)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Stock)
-                </td>
+                <th>
+                    @Html.DisplayName("Id")
+                </th>
+                <th>
+                    @Html.DisplayName("Medicamento")
+                </th>
+                <th>
+                    @Html.DisplayName("Existencias")
+                </th>
+                <th>
+                    @Html.DisplayName("Precio")
+                </th>
 
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                <th></th>
             </tr>
-        }
-    }
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
 
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NameDrug)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Stock)
+                        </td>
+                        <td>
+                            <input type="text" style="left: 8px; width:75px;" class="form-control" width="3" name="cantidad"
+                                   value="" placeholder="Solicitar" />
+                        </td>
+                        <td>
+                            <button>Agregar</button>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+        <div class="left">
+            @Html.ActionLink("Ver pedido", "goToCar", "Order")
+        </div>
 
-</table>
+    </form>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Lab2_Ed1_ABB.Models.Medication> 
+
+@{
+    ViewBag.Title = "Car";
+}
+
+<h2>Pedido</h2>
+
+<p>
+    @Html.ActionLink("Seguir ordenando", "Order","Order")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Id")
+        </th>
+        <th>
+            @Html.DisplayName("Medicamento")
+        </th>
+        <th>
+            @Html.DisplayName("Cantidad")
+        </th>
+        <th>
+            @Html.DisplayName("Precio")
+        </th>
+        <th></th>
+    </tr>
+    @if (Model != null)
+     {
+         foreach (var item in Model)
+         {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameDrug)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+            </tr>
+         }
+     }
+
+        <tr>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+                Total: @ViewBag.Total
+            </td>
+        </tr>
+    </table>
