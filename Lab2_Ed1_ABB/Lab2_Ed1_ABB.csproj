@@ -123,7 +123,9 @@
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Models\BinaryTree.cs" />
     <Compile Include="Models\Medication.cs" />
+    <Compile Include="Models\Node.cs" />
     <Compile Include="Models\ReadFile.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -10,7 +10,9 @@ namespace Lab2_Ed1_ABB.Controllers
 {
     public class OrderController : Controller
     {
-       public ActionResult CreateUser()
+        static List<Node> reFill = new List<Node>();
+
+        public ActionResult CreateUser()
         {
             return View();
         }
@@ -135,6 +137,20 @@ namespace Lab2_Ed1_ABB.Controllers
                 return View("Order", Storage.Instance.showMedication);
             }
         }
-
+        public ActionResult ReFill()
+        {
+            Random number = new Random();
+            foreach (var item in reFill)
+            {
+                Node insert = new Node();
+                insert = item;
+                insert.Left = null;
+                insert.Right = null;
+                insert.medications.Stock = number.Next(0, 15);
+                Tree.Insertion(insert);
+            }
+            reFill.Clear();
+            return View();
         }
+    }
 }
