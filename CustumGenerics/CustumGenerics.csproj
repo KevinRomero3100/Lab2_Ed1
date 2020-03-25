@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Structures\AVL.cs" />
     <Compile Include="Structures\BinaryTree.cs" />
     <Compile Include="Structures\Node.cs" />
+    <Compile Include="Structures\TAVL.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

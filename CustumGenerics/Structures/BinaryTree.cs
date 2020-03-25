@@ -8,6 +8,7 @@ namespace CustumGenerics.Structures
 {
     public class BinaryTree<T>
     {
+        #region FUNCIONES PRINCIPALES
         public static Node<T> Root { get; set; }
         public static Node<T> Wanted { get; set; }
 
@@ -63,7 +64,7 @@ namespace CustumGenerics.Structures
             else
                 return Wanted;
         }
-
+        #endregion
         public static void Preorden(Node<T> actualy, T value, Comparison<T> comparison)
         {
             if (comparison.Invoke(value, actualy.Value) == 0)
