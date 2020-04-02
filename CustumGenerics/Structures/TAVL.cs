@@ -17,8 +17,8 @@ namespace CustumGenerics.Structures
     public interface TAVL<T>
     {
         Node<T> Delete(T value);
-        Node<T> Wanted(T value);
-        void Insert(T value);
+        Node<T> search(T value, Comparison<T> comparison);
+        void Insert(T value, Comparison<T> comparison);
         List<T> InOrder();
         List<T> PreOrder();
         List<T> PostOrder();

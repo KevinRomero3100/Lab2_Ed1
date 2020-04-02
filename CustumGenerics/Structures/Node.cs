@@ -28,6 +28,10 @@ namespace CustumGenerics.Structures
         /// <param name="number"></param> define la altura
 
         #region Constructor
+        public Node()
+        {
+
+        }
         public Node(T value, Node<T> left, Node<T> right)
         {
             this.Value = value;

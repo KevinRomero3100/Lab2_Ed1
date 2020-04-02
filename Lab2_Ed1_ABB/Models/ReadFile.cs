@@ -34,13 +34,14 @@ namespace Lab2_Ed1_ABB.Controllers
                                 string[] incertarNuevo = line.Split(',');
                                 incertarNuevo[incertarNuevo.Length-1] = newStock.ToString();
                                 line = "";
+                                int coutPosition = 1;
                                 foreach (string item in incertarNuevo)
                                 {
                                     item.Trim();
-                                    if (item.CompareTo(newStock.ToString()) == 0)
+                                    if (incertarNuevo.Length == coutPosition++)
                                         line += item;
                                     else
-                                        line += item + ", ";
+                                        line += item + ",";
                                 }
                                 sw.WriteLine(line);
                             }

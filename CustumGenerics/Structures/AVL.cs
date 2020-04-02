@@ -360,12 +360,12 @@ namespace CustumGenerics.Structures
         }
         #endregion
         #region FUNCIONES PRINCIPALES
-        public Node<T> Wanted(T value)
+        public Node<T> search(T value, Comparison<T> comparison)
         {
             var auxiliar = root;
-            while (compare(auxiliar.Value, value) != 0)
+            while (comparison.Invoke(auxiliar.Value, value) != 0)
             {
-                auxiliar = compare(value, auxiliar.Value) < 0 ? auxiliar.left : auxiliar.right;
+                auxiliar = comparison.Invoke(value, auxiliar.Value) < 0 ? auxiliar.left : auxiliar.right;
                 if (auxiliar == null)
                 {
                     return null;
@@ -373,7 +373,7 @@ namespace CustumGenerics.Structures
             }
             return auxiliar;
         }
-        public void Insert(T value)
+        public void Insert(T value, Comparison<T> comparison)
         {
             var newNode = new Node<T>(value);
             if (root == null)
@@ -382,14 +382,14 @@ namespace CustumGenerics.Structures
             }
             else
             {
-                InsertInto(newNode, root);
+                InsertInto(newNode, root, comparison);
             }
         }
-        public void InsertInto(Node<T> newNode, Node<T> parent)
+        public void InsertInto(Node<T> newNode, Node<T> parent, Comparison<T> comparison)
         {
             if (parent != null)
             {
-                if (compare(newNode.Value, parent.Value) < 0)
+                if (comparison.Invoke(newNode.Value, parent.Value) < 0)
                 {
                     if (parent.left == null)
                     {
@@ -399,12 +399,13 @@ namespace CustumGenerics.Structures
                     }
                     else
                     {
-                        InsertInto(newNode, parent.left);
+                        InsertInto(newNode, parent.left, comparison);
                     }
                 }
                 else
                 {
-                    if (compare(newNode.Value, parent.Value) > 0)
+                    
+                    if (comparison.Invoke(newNode.Value, parent.Value) > 0)
                     {
                         if(parent.right == null)
                         {
@@ -414,7 +415,7 @@ namespace CustumGenerics.Structures
                         }
                         else
                         {
-                            InsertInto(newNode, parent.right);
+                            InsertInto(newNode, parent.right, comparison);
                         }
                     }
                 }

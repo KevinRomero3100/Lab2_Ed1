@@ -6,7 +6,7 @@ using Lab2_Ed1_ABB.Helpers;
 
 namespace Lab2_Ed1_ABB.Models
 {
-    public class Indice
+    public class Indice : IComparable
     {
         public int lineNumber { get; set; }
         public string nameDrug { get; set; }
@@ -21,5 +21,9 @@ namespace Lab2_Ed1_ABB.Models
             Storage.Instance.binaryTree.Insert(this, comparisonbyName);
         }
 
+        public int CompareTo(object obj)
+        {
+            throw new NotImplementedException();
+        }
     } 
 }

@@ -19,7 +19,7 @@ namespace Lab2_Ed1_ABB.Helpers
                 return _instance;
             }
         }
-        public BinaryTree<Indice> binaryTree = new BinaryTree<Indice>();
+        public AVL<Indice> binaryTree = new AVL<Indice>();
         public List<Medication> showMedication = new List<Medication>();
         public List<Medication> showCar = new List<Medication>();
         public UserDS user = new UserDS();
